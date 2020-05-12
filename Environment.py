@@ -1,6 +1,6 @@
 from tkinter import *
 import time
-from Object3D import Object3D
+import Object3D
 from Cube import Cube
 from Pyramid import Pyramid
 from Icosahedron import Icosahedron
@@ -19,62 +19,27 @@ class Environment:
         self.start_x = None
         self.start_y = None
 
-    def rotateAll(self, dir):
-        if dir == "X":
-            for element in self.environment:
-                element.rotateZ()
-        elif dir == "X-":
-            for element in self.environment:
-                element.rotateZC()
-        if dir == "Y":
-            for element in self.environment:
-                element.rotateY()
-        elif dir == "Y-":
-            for element in self.environment:
-                element.rotateYC()
+    def rotateAll(self, matrix):
+        for element in self.environment:
+            element.rotate_helper(matrix)
 
     def mousedrag(self, event):
-        if self.start_x == None and self.start_y == None:
+        if self.start_x is None and self.start_y is None:
             self.start_x = event.x
             self.start_y = event.y
         else:
             dx = (event.x - self.start_x)
             dy = (event.y - self.start_y)
             if dx > 1:
-                self.rotateAll("X")
+                self.rotateAll(Object3D.ROTATE_Z)
             elif dx < -1:
-                self.rotateAll("X-")
+                self.rotateAll(Object3D.ROTATE_ZC)
             if dy > 1:
-                self.rotateAll("Y-")
+                self.rotateAll(Object3D.ROTATE_YC)
             elif dy < -1:
-                self.rotateAll("Y")
+                self.rotateAll(Object3D.ROTATE_Y)
             self.start_x = event.x
             self.start_y = event.y
-
-    def mousepressed(self, event):
-        for element in self.environment:
-            element.rotateZ()
-        print("left pressed")
-
-    def mousereleased(self, event):
-        for element in self.environment:
-            element.rotateY()
-
-        # delta_x = abs(event.x - self.start_x)
-        # delta_y = abs(event.y - self.start_y)
-        # self.start_x, self.start_y = None, None
-        #
-        #
-        #
-        # if delta_x > 0:
-        #     for i in range(0, delta_x, 10):
-        #         for element in self.environment:
-        #             element.rotateZ()
-        # if delta_y > 0:
-        #     for i in range(0, delta_y, 10):
-        #         for element in self.environment:
-        #             element.rotateY()
-        print("up pressed")
 
     def add(self, name, *args):
         obj = None
@@ -88,8 +53,4 @@ class Environment:
         self.canvas.delete(ALL)
         for element in self.environment:
             element.render(self.canvas)
-            #element.rotateZ()
-            #element.rotateY()
-            #element.rotateX()
         self.top.update()
-

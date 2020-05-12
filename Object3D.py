@@ -55,9 +55,8 @@ class Object3D:
         key = lambda face: sum([vertex[0] for vertex in face.vertices])/4
         self.faces.sort(key=key)
 
-PI = math.pi
 
-DELTA_THETA = math.pi / 32
+DELTA_THETA = math.pi / 48
 
 ROTATE_X = np.array([[1, 0, 0],
                      [0, math.cos(DELTA_THETA), -math.sin(DELTA_THETA)],
