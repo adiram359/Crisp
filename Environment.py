@@ -48,6 +48,7 @@ class Environment:
         elif name == "Pyramid":
             obj = Pyramid(*args)
         self.environment.append(obj)
+        return obj
 
     def render(self):
         self.canvas.delete(ALL)

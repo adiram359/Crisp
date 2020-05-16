@@ -33,10 +33,6 @@ class Object3D:
                 face.vertices[i] = np.dot(matrix, face.vertices[i])
 
     def render(self, canvas):
-        self.draw_wireframe(canvas)
-
-    def draw_wireframe(self, canvas):
-
         for face in self.faces:
             points = []
             self.sort_faces()
@@ -48,12 +44,22 @@ class Object3D:
                 x1 = v1[1] + self.x
                 y1 = v1[2] + self.y
                 points.extend([x0, y0, x1, y1])
-            canvas.create_polygon(points, outline="black", fill="#82E0AA")
+            canvas.create_polygon(points, outline="black", fill=face.color)
                 #canvas.create_line(x0, y0, x1, y1, width=2)
+
+    def bumpers(self):
+        if self.display == "block":
+            return 0, 0, 0
+        else:
+            return self.x - 400, self.y - 400, self.z - 400
 
     def sort_faces(self):
         key = lambda face: sum([vertex[0] for vertex in face.vertices])/4
         self.faces.sort(key=key)
+
+    def set_face_colors(self, *args):
+        for i in range(min(len(self.faces), len(args))):
+            self.faces[i].set_color(args[i])
 
 
 DELTA_THETA = math.pi / 48
