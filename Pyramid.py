@@ -16,11 +16,6 @@ class Pyramid(Object3D.Object3D):
         self.faces = []
         self.create_faces(self.height, self.radius, self.num_sides)
 
-    def bumpers(self):
-        if self.display == "block":
-            return 0, 0, 0
-        else:
-            return self.x - 400, self.y - 400, self.z - 400
 
 
     def create_faces(self, height, radius, num_sides):

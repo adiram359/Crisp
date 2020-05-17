@@ -1,6 +1,7 @@
 from tkinter import *
 import time
 import Object3D
+import numpy as np
 from Cube import Cube
 from Pyramid import Pyramid
 from Icosahedron import Icosahedron
@@ -31,13 +32,21 @@ class Environment:
             dx = (event.x - self.start_x)
             dy = (event.y - self.start_y)
             if dx > 1:
-                self.rotateAll(Object3D.ROTATE_Z)
+                self.environment[0].rotateYC()
+                self.environment[1].rotateYC()
+
             elif dx < -1:
-                self.rotateAll(Object3D.ROTATE_ZC)
+                self.environment[0].rotateY()
+                self.environment[1].rotateY()
+
             if dy > 1:
-                self.rotateAll(Object3D.ROTATE_YC)
+                self.environment[0].rotateXC()
+                self.environment[1].rotateXC()
+
             elif dy < -1:
-                self.rotateAll(Object3D.ROTATE_Y)
+                self.environment[0].rotateX()
+                self.environment[1].rotateX()
+
             self.start_x = event.x
             self.start_y = event.y
 
@@ -55,3 +64,4 @@ class Environment:
         for element in self.environment:
             element.render(self.canvas)
         self.top.update()
+
