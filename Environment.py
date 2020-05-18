@@ -29,7 +29,7 @@ class Environment:
         self.canvas.delete(ALL)
         for element in self.all_objects:
             element.render(self.canvas)
-        self.top.update()
+        self.top .update()
 
     def rotate_all_x(self, theta):
         for element in self.all_objects:
@@ -50,10 +50,10 @@ class Environment:
         else:
             dx = (event.x - self.start_x)
             dy = (event.y - self.start_y)
-            theta = math.pi / 64 if dx > 0 else -math.pi / 64
+            theta = math.pi/64 if dx > 0 else -math.pi/64
             if abs(dx) > 1:
                 self.rotate_all_y(theta)
-            theta = math.pi / 64 if dy > 0 else -math.pi / 64
+            theta = -math.pi/64 if dy > 0 else math.pi/64
             if abs(dy) > 1:
                 self.rotate_all_x(theta)
             self.start_x = event.x
