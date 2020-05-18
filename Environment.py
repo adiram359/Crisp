@@ -1,28 +1,47 @@
 from tkinter import *
-import time
-import Object3D
-import numpy as np
+import math
 from Cube import Cube
 from Pyramid import Pyramid
-from Icosahedron import Icosahedron
 
 
 class Environment:
     def __init__(self, bgcolor, height, width):
-        self.BACKGROUND = bgcolor
-        self.HEIGHT = height
-        self.WIDTH = width
-        self.environment = []
+        self.all_objects = []
         self.top = Tk()
-        self.canvas = Canvas(self.top, bg=self.BACKGROUND, height=self.HEIGHT, width=self.WIDTH)
+        self.canvas = Canvas(self.top, bg=bgcolor, height=height, width=width)
         self.top.bind("<B1-Motion>", self.mousedrag)
         self.canvas.pack()
         self.start_x = None
         self.start_y = None
 
-    def rotateAll(self, matrix):
-        for element in self.environment:
-            element.rotate_helper(matrix)
+    def add(self, name, *args):
+        obj = None
+        if name == "Cube":
+            obj = Cube(*args)
+        elif name == "Pyramid":
+            obj = Pyramid(*args)
+        self.all_objects.append(obj)
+        return obj
+
+    def render(self):
+        k = lambda obj: obj.coordinates[2]
+        self.all_objects.sort(key=k)
+        self.canvas.delete(ALL)
+        for element in self.all_objects:
+            element.render(self.canvas)
+        self.top.update()
+
+    def rotate_all_x(self, theta):
+        for element in self.all_objects:
+            element.rotate_x(theta)
+
+    def rotate_all_y(self, theta):
+        for element in self.all_objects:
+            element.rotate_y(theta)
+
+    def rotate_all_z(self, theta):
+        for element in self.all_objects:
+            element.rotate_z(theta)
 
     def mousedrag(self, event):
         if self.start_x is None and self.start_y is None:
@@ -31,37 +50,11 @@ class Environment:
         else:
             dx = (event.x - self.start_x)
             dy = (event.y - self.start_y)
-            if dx > 1:
-                self.environment[0].rotateYC()
-                self.environment[1].rotateYC()
-
-            elif dx < -1:
-                self.environment[0].rotateY()
-                self.environment[1].rotateY()
-
-            if dy > 1:
-                self.environment[0].rotateXC()
-                self.environment[1].rotateXC()
-
-            elif dy < -1:
-                self.environment[0].rotateX()
-                self.environment[1].rotateX()
-
+            theta = math.pi / 64 if dx > 0 else -math.pi / 64
+            if abs(dx) > 1:
+                self.rotate_all_y(theta)
+            theta = math.pi / 64 if dy > 0 else -math.pi / 64
+            if abs(dy) > 1:
+                self.rotate_all_x(theta)
             self.start_x = event.x
             self.start_y = event.y
-
-    def add(self, name, *args):
-        obj = None
-        if name == "Cube":
-            obj = Cube(*args)
-        elif name == "Pyramid":
-            obj = Pyramid(*args)
-        self.environment.append(obj)
-        return obj
-
-    def render(self):
-        self.canvas.delete(ALL)
-        for element in self.environment:
-            element.render(self.canvas)
-        self.top.update()
-

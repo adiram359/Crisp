@@ -14,18 +14,30 @@ class Cube(Object3D.Object3D):
     def create_faces(self, radius):
         coefficients = [-1, 1]
         for c in coefficients:
-            temp = [np.array([self.x + c * radius, self.y - radius, self.z - radius]),
-                    np.array([self.x + c * radius, self.y + radius, self.z - radius]),
-                    np.array([self.x + c * radius, self.y + radius, self.z + radius]),
-                    np.array([self.x + c * radius, self.y - radius, self.z + radius]),
-                    np.array([self.x + radius, self.y + c * radius, self.z - radius]),
-                    np.array([self.x - radius, self.y + c * radius, self.z - radius]),
-                    np.array([self.x - radius, self.y + c * radius, self.z + radius]),
-                    np.array([self.x + radius, self.y + c * radius, self.z + radius]),
-                    np.array([self.x + radius, self.y - radius, self.z + c * radius]),
-                    np.array([self.x + radius, self.y + radius, self.z + c * radius]),
-                    np.array([self.x - radius, self.y + radius, self.z + c * radius]),
-                    np.array([self.x - radius, self.y - radius, self.z + c * radius])]
+            temp = [np.array(
+                [self.coordinates[0] + c * radius, self.coordinates[1] - radius, self.coordinates[2] - radius]),
+                np.array(
+                    [self.coordinates[0] + c * radius, self.coordinates[1] + radius, self.coordinates[2] - radius]),
+                np.array(
+                    [self.coordinates[0] + c * radius, self.coordinates[1] + radius, self.coordinates[2] + radius]),
+                np.array(
+                    [self.coordinates[0] + c * radius, self.coordinates[1] - radius, self.coordinates[2] + radius]),
+                np.array(
+                    [self.coordinates[0] + radius, self.coordinates[1] + c * radius, self.coordinates[2] - radius]),
+                np.array(
+                    [self.coordinates[0] - radius, self.coordinates[1] + c * radius, self.coordinates[2] - radius]),
+                np.array(
+                    [self.coordinates[0] - radius, self.coordinates[1] + c * radius, self.coordinates[2] + radius]),
+                np.array(
+                    [self.coordinates[0] + radius, self.coordinates[1] + c * radius, self.coordinates[2] + radius]),
+                np.array(
+                    [self.coordinates[0] + radius, self.coordinates[1] - radius, self.coordinates[2] + c * radius]),
+                np.array(
+                    [self.coordinates[0] + radius, self.coordinates[1] + radius, self.coordinates[2] + c * radius]),
+                np.array(
+                    [self.coordinates[0] - radius, self.coordinates[1] + radius, self.coordinates[2] + c * radius]),
+                np.array(
+                    [self.coordinates[0] - radius, self.coordinates[1] - radius, self.coordinates[2] + c * radius])]
             self.faces.append(Face.Face(temp[0:4]))
             self.faces.append(Face.Face(temp[4:8]))
             self.faces.append(Face.Face(temp[8:12]))
