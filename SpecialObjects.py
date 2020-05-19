@@ -6,8 +6,8 @@ import math
 
 
 class Arch(Object3D):
-    def __init__(self, x, y, z, radius, length, height, width, display, color="white"):
-        super().__init__(x, y, z, display, color)
+    def __init__(self, x, y, z, radius, length, height, width, display, color="white", outline="black"):
+        super().__init__(x, y, z, display, color, outline)
         self.width = height
         self.radius = radius
         self.length = length

@@ -4,8 +4,8 @@ import Face
 
 
 class Cube(Object3D.Object3D):
-    def __init__(self, x, y, z, radius, display, color="white"):
-        super().__init__(x, y, z, display, color)
+    def __init__(self, x, y, z, radius, display, color="white", outline="black"):
+        super().__init__(x, y, z, display, color, outline)
         self.radius = radius
         self.name = "Cube"
         self.faces = []
