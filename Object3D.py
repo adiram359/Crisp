@@ -3,10 +3,11 @@ import numpy as np
 
 
 class Object3D:
-    def __init__(self, x, y, z, display):
+    def __init__(self, x, y, z, display, color="white"):
         self.display = display
         self.faces = None
         self.coordinates = np.array([x, y, z])
+        self.color = color
 
     def rotate(self, matrix):
         c = 1 if self.display == "flex" else 0
@@ -39,7 +40,6 @@ class Object3D:
 
     def render(self, canvas):
         c = 1 if self.display == "block" else 0
-
         for face in self.faces:
             points = []
             self.sort_faces()
@@ -51,11 +51,12 @@ class Object3D:
                 x1 = v1[0] + c * self.coordinates[0]
                 y1 = v1[1] + c * self.coordinates[1]
                 points.extend([x0, y0, x1, y1])
-            canvas.create_polygon(points, outline="black", fill=face.color)
+            fill = self.color if face.color == "white" else face.color
+            canvas.create_polygon(points, outline="black", fill=fill)
 
 
     def sort_faces(self):
-        key = lambda face: sum([vertex[2] for vertex in face.vertices]) / 4
+        key = lambda face: sum([vertex[2] for vertex in face.vertices]) / len(face.vertices)
         self.faces.sort(key=key)
 
     def set_face_colors(self, *args):

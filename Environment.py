@@ -1,7 +1,6 @@
 from tkinter import *
 import math
-from Cube import Cube
-from Pyramid import Pyramid
+
 
 
 class Environment:
@@ -14,14 +13,8 @@ class Environment:
         self.start_x = None
         self.start_y = None
 
-    def add(self, name, *args):
-        obj = None
-        if name == "Cube":
-            obj = Cube(*args)
-        elif name == "Pyramid":
-            obj = Pyramid(*args)
+    def add(self, obj):
         self.all_objects.append(obj)
-        return obj
 
     def render(self):
         k = lambda obj: obj.coordinates[2]
@@ -29,7 +22,7 @@ class Environment:
         self.canvas.delete(ALL)
         for element in self.all_objects:
             element.render(self.canvas)
-        self.top .update()
+        self.top.update()
 
     def rotate_all_x(self, theta):
         for element in self.all_objects:

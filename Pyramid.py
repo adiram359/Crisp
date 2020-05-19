@@ -5,8 +5,8 @@ import math
 
 
 class Pyramid(Object3D.Object3D):
-    def __init__(self, x, y, z, length, height, num_sides, display):
-        super().__init__(x, y, z, display)
+    def __init__(self, x, y, z, length, height, num_sides, display, color="white"):
+        super().__init__(x, y, z, display, color)
         self.length = length
         self.height = height
         self.radius = length / math.cos(math.pi / num_sides)

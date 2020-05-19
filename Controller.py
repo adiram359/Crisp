@@ -1,9 +1,14 @@
 from Environment import Environment
-import Object3D
+from Object3D import Object3D
+from Cube import Cube
+from Pyramid import Pyramid
 from random import random
-import numpy as np
+from Sphere import Sphere
+import Demos
+from Prism import Prism
 import time
 import math
+import SpecialObjects
 
 MEDIUMSEAGREEN = "#3CB371"
 SEAGREEN = "#2E8B57"
@@ -15,24 +20,24 @@ MEDIUMAQUAMARINE = "#66CDAA"
 LIGHTGREEN = "#90EE90"
 
 if __name__ == '__main__':
-    e = Environment("#D2B4DE", 800, 800)
-    cube = e.add("Cube", 400, 400, 500, 40, "flex")
-    cube2 = e.add("Cube",480, 400, 420, 40, "flex")
-    cube3 = e.add("Cube",320, 400, 420, 40, "flex")
-    cube4 = e.add("Cube", 400, 400, 340, 40, "flex")
+    e = Environment("#AED6F1", 800, 800)
+    a = SpecialObjects.Arch(400, 400, 400, 40, 150, 60, 20,"block", "#AEB6BF")
+    e.add(a)
+    #cube = Cube(400, 400, 400, 40, "flex")
+    # s = Sphere(400, 400, 480, 30,"flex", "#D2B4DE")
+    # for i in range(10):
+    #     c = Cube(random() * 800, random() * 800, random() * 800, random() * 20, "flex")
+    #     c.set_face_colors(MEDIUMAQUAMARINE, SEAGREEN, LIGHTGREEN, MEDIUMAQUAMARINE, FORRESTGREEN,MEDIUMAQUAMARINE, SEAGREEN, LIGHTGREEN, MEDIUMAQUAMARINE, FORRESTGREEN)
+    #     e.add(c)
+    # e.add(s)
+    # cube.set_face_colors(MEDIUMAQUAMARINE, SEAGREEN, LIGHTGREEN, MEDIUMAQUAMARINE, FORRESTGREEN)
 
-    #p =  e.add("Pyramid", 400, 400, 400,10, 300, 3)
-    for i in range(11):
-        e.add("Pyramid", random()*800,random()*800,random()*800, 10, 30, 5, "block")
-
-    cube.set_face_colors(MEDIUMSEAGREEN, SEAGREEN,
-                         FORRESTGREEN, MEDIUMAQUAMARINE,
-                         MEDIUMSEAGREEN, DARKSEAGREEN)
-    theta = math.pi/64
+    theta = 0
     while True:
-       # e.rotate_all_y(theta)
-        # e.rotateAll(Object3D.ROTATE_Y)
-        # e.rotateAll(Object3D.ROTATE_X)
-        # e.rotateAll(Object3D.ROTATE_Z)
-        # e.rotateAll(Object3D.ROTATE_X)
+        theta = theta + 0.02
+        #e.rotate_all_y((math.sin(theta + 3 * math.pi/2) + 1)*math.pi/200)
+        #e.rotate_all_z((math.sin(theta + 3 * math.pi/2) + 1)*math.pi/200)
+        #e.rotate_all_x((math.sin(theta + 3 * math.pi/2) + 1)*math.pi/200)
+
+
         e.render()
