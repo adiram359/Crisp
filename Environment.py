@@ -17,7 +17,7 @@ class Environment:
         self.all_objects.append(obj)
 
     def render(self):
-        k = lambda obj: obj.coordinates[2]
+        k = lambda obj: obj.coordinates[0]
         self.all_objects.sort(key=k)
         self.canvas.delete(ALL)
         for element in self.all_objects:

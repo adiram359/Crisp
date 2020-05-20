@@ -20,15 +20,15 @@ MEDIUMAQUAMARINE = "#66CDAA"
 LIGHTGREEN = "#90EE90"
 
 if __name__ == '__main__':
-    e = Environment("#E8DAEF", 800, 800)
-    a = Prism(400, 400, 600, 40, 40, 100,"block")
-    e.add(a)
+    e = Environment("white", 800, 800)
+    # a = Prism(400, 400, 600, 40, 40, 100,"block")
+    # e.add(a)
 
     # p = SpecialObjects.Arch(400, 400, 400, 20, 50, 50, 50, "flex")
     # e.add(p)
     # p.rotate_in_place_z(math.pi/2)
     # p.rotate_in_place_y(math.pi/2)
-    #cube = Cube(400, 400, 400, 40, "flex")
+    # cube = Cube(400, 400, 400, 40, "flex")
     # s = Sphere(400, 400, 480, 30,"flex", "#D2B4DE")
     # for i in range(10):
     #     c = Cube(random() * 800, random() * 800, random() * 800, random() * 20, "flex")
@@ -36,15 +36,50 @@ if __name__ == '__main__':
     #     e.add(c)
     # e.add(s)
     # cube.set_face_colors(MEDIUMAQUAMARINE, SEAGREEN, LIGHTGREEN, MEDIUMAQUAMARINE, FORRESTGREEN)
+    Demos.bridge(e)
     #Demos.tower(e)
-    theta = 0
+    #Demos.storm(e)
+
     while True:
-        theta = theta + 0.02
-        #e.rotate_all_y((math.sin(theta + 3 * math.pi/2) + 1)*math.pi/200)
-        #e.rotate_all_z((math.sin(theta + 3 * math.pi/2) + 1)*math.pi/200)
-        #e.rotate_all_x((math.sin(theta + 3 * math.pi/2) + 1)*math.pi/200)
-
-        #e.all_objects[0].rotate_z(math.pi/32)
-
         e.render()
-
+    # #e.rotate_all_y(math.pi/2)
+    # def y():
+    #     theta = 0
+    #     while theta < math.pi:
+    #         theta = theta + 0.01
+    #         e.rotate_all_y(abs(math.sin(theta)) * math.pi / 100)
+    #         # e.rotate_all_z(abs(math.sin(theta)) * math.pi / 100)
+    #         # e.rotate_all_x((math.sin(theta + 3 * math.pi/2) + 1)*math.pi/200)
+    #
+    #         # e.all_objects[0].rotate_z(math.pi/32)
+    #         e.render()
+    #
+    #
+    # def x():
+    #     theta = 0
+    #     while theta < math.pi:
+    #         theta = theta + 0.01
+    #         # e.rotate_all_y((math.sin(theta + 3 * math.pi/2) + 1)*math.pi/200)
+    #         e.rotate_all_z(abs(math.sin(theta)) * math.pi / 100)
+    #         # e.rotate_all_x((math.sin(theta + 3 * math.pi/2) + 1)*math.pi/200)
+    #
+    #         # e.all_objects[0].rotate_z(math.pi/32)
+    #         e.render()
+    # def z():
+    #     theta = 0
+    #     while theta < math.pi:
+    #         theta = theta + 0.01
+    #         # e.rotate_all_y((math.sin(theta + 3 * math.pi/2) + 1)*math.pi/200)
+    #         e.rotate_all_x(abs(math.sin(theta)) * math.pi / 100)
+    #         # e.rotate_all_x((math.sin(theta + 3 * math.pi/2) + 1)*math.pi/200)
+    #
+    #         # e.all_objects[0].rotate_z(math.pi/32)
+    #         e.render()
+    #
+    # x()
+    # z()
+    # y()
+    # z()
+    # x()
+    # y()
+    # z()

@@ -14,6 +14,7 @@ class Pyramid(Object3D.Object3D):
         self.name = "Pyramid"
         self.faces = []
         self.create_faces(self.height, self.radius, self.num_sides)
+        self.rotate_in_place_y(math.pi/2)
 
 
 

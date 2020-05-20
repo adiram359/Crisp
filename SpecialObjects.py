@@ -14,13 +14,15 @@ class Arch(Object3D):
         self.height = width
         self.faces = []
         Prism.create_faces(self)
-        self.rotate_z(math.pi/2)
+        #self.rotate_z(math.pi/2)
+        self.rotate_y(math.pi/2)
+
 
     def create_base(self, height):
         base = []
         x, y, z = self.bumper()
         base.append(np.array([x + self.width/2, y - self.length/2, z - self.height/2 + height]))
-        divisions = 10
+        divisions = 12
         theta = 0
         for i in range(divisions + 1):
             x0 = x + self.width/2 - math.sin(theta) * self.radius
