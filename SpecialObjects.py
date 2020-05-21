@@ -17,7 +17,6 @@ class Arch(Object3D):
         #self.rotate_z(math.pi/2)
         self.rotate_y(math.pi/2)
 
-
     def create_base(self, height):
         base = []
         x, y, z = self.bumper()
@@ -35,3 +34,47 @@ class Arch(Object3D):
         base.append(np.array([x - self.width/2, y - self.length/2, z - self.height/2 + height ]))
 
         return base
+
+class HouseTop(Object3D):
+    def __init__(self, x, y, z, length, width, height, display, color="white", outline="black"):
+        super().__init__(x, y, z, display, color, outline)
+        self.width = width
+        self.length = length
+        self.height = height
+        self.faces = []
+        self.create_faces()
+
+    def create_faces(self):
+        x, y, z = self.bumper()
+        points = []
+        points.append(np.array([x + self.width/2, y - self.length/2, z - self.height/2]))
+        points.append(np.array([x + self.width/2, y + self.length/2, z - self.height/2]))
+        points.append(np.array([x - self.width/2, y + self.length/2, z - self.height/2]))
+        points.append(np.array([x - self.width/2, y - self.length/2, z - self.height/2]))
+        self.faces.append(Face(points))
+        points = []
+
+        points.append(np.array([x + self.width/2, y - self.length/2, z - self.height/2]))
+        points.append(np.array([x , y - self.length/2, z + self.height/2]))
+        points.append(np.array([x - self.width/2, y - self.length/2, z - self.height/2]))
+        self.faces.append(Face(points))
+        points = []
+
+        points.append(np.array([x + self.width/2, y + self.length/2, z - self.height/2]))
+        points.append(np.array([x , y + self.length/2, z + self.height/2]))
+        points.append(np.array([x - self.width/2, y + self.length/2, z - self.height/2]))
+        self.faces.append(Face(points))
+        points = []
+
+        points.append(np.array([x + self.width/2, y - self.length/2, z - self.height/2]))
+        points.append(np.array([x + self.width/2, y + self.length/2, z - self.height/2]))
+        points.append(np.array([x , y + self.length/2, z + self.height/2]))
+        points.append(np.array([x , y - self.length/2, z + self.height/2]))
+        self.faces.append(Face(points))
+        points = []
+
+        points.append(np.array([x - self.width/2, y + self.length/2, z - self.height/2]))
+        points.append(np.array([x , y + self.length/2, z + self.height/2]))
+        points.append(np.array([x , y - self.length/2, z + self.height/2]))
+        points.append(np.array([x - self.width/2, y - self.length/2, z - self.height/2]))
+        self.faces.append(Face(points))

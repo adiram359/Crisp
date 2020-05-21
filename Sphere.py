@@ -8,7 +8,8 @@ class Sphere(Object3D):
         super().__init__(x, y, z, display, color, outline)
         self.radius = radius
         self.faces = []
+        self.name = "Sphere"
 
     def render(self, canvas):
         x, y, z = self.coordinates[0], self.coordinates[1], self.coordinates[2]
-        canvas.create_oval(x - self.radius, y - self.radius, x + self.radius, y + self.radius, outline="black", fill=self.color)
+        canvas.create_oval(y - self.radius, z - self.radius, y + self.radius, z + self.radius, outline=self.color, fill=self.color)

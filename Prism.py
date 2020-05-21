@@ -14,9 +14,9 @@ class Prism(Object3D.Object3D):
         self.faces = []
         self.name = "Prism"
         self.create_faces()
-        self.rotate_in_place_z(math.pi/4)
-        # self.rotate_x(math.pi/2)
-        #self.rotate_y(math.pi/num_sides)
+        # self.rotate_in_place_z(math.pi/4)
+        # # self.rotate_x(math.pi/2)
+        #self.rotate_z(math.pi/num_sides)
 
     def create_faces(self):
         base = self.create_base(0)

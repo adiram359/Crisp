@@ -1,5 +1,6 @@
 from tkinter import *
 import math
+from Sphere import Sphere
 
 
 
@@ -17,7 +18,7 @@ class Environment:
         self.all_objects.append(obj)
 
     def render(self):
-        k = lambda obj: obj.coordinates[0]
+        k = lambda obj: obj.coordinates[0] if not isinstance(obj, Sphere) else -100
         self.all_objects.sort(key=k)
         self.canvas.delete(ALL)
         for element in self.all_objects:
