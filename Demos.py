@@ -8,6 +8,7 @@ import math
 from Prism import Prism
 from Environment import Environment
 from RectPrism import RectPrism
+from Icosahedron import Icosahedron
 
 CACTUS_GREEN = "#2ECC71"
 BLACK = "black"
@@ -398,9 +399,52 @@ def capitol_hill(e):
             s = Sphere(x, y, z, r, "flex", "white", "white")
             e.add(s)
             x += r/4
-    cloud(600, 500, 200, 10, 15)
-    cloud(500, 400, 180, 20, 10)
-    cloud(500, 400, 210, 10, 10)
-    cloud(200, 200, 50, 25, 5)
-    cloud(100, 200, 100, 15, 20)
-    cloud(700, 600, 135, 23, 10)
+    cloud(600, 400, 300, 10, 15)
+    cloud(500, 300, 280, 20, 10)
+    cloud(500, 300, 310, 10, 10)
+    cloud(200, 100, 150, 25, 5)
+    cloud(100, 100, 200, 15, 20)
+    cloud(400, 000, 235, 23, 10)
+
+
+def final_demo(e):
+    p = Prism(400, 280, 500, 40, 80, 5, "block", "white","#5B2C6F")
+    p.set_face_colors("#6C3483","#7D3C98","#8E44AD","#A569BD","#BB8FCE","#D2B4DE","#E8DAEF")
+    p.rotate_in_place_z(math.pi/5)
+    p.rotate_in_place_y(math.pi/2)
+    e.add(p)
+
+    p = Pyramid(400,270,260,30,80,3,"block")
+    p.set_face_colors("#FAD7A0","#F8C471","#F5B041","#F39C12")
+    p.rotate_in_place_z(-math.pi/2)
+    e.add(p)
+
+    p = Cube(400, 550, 505, 40, "block")
+    p.set_face_colors("#A9DFBF","#82E0AA","#2ECC71","#28B463","#239B56","#27AE60","#229954")
+    e.add(p)
+
+    p = Prism(400, 400,350, 40, 80, 60, "block")
+    blue = ["#EBF5FB","#D6EAF8","#AED6F1","#A9CCE3","#7FB3D5","#5499C7","#5DADE2","#3498DB","#2980B9","#3498DB"]
+    key = lambda: blue[int(random() * len(blue))]
+    for face in p.faces:
+        face.color = key()
+    e.add(p)
+
+    sunset=["#E74C3C","#C0392B","#F4D03F","#F39C12","#9B59B6","#EC7063","#E67E22","#F4D03F","#F7DC6F","#F0B27A"]
+    key = lambda: sunset[int(random() * len(sunset))]
+    p = Pyramid(400,525,250,45,80,20,"block")
+    for face in p.faces:
+        face.color = key()
+    p.rotate_in_place_z(-math.pi/2)
+    e.add(p)
+
+def ico(e):
+    i = Icosahedron(400, 400, 400, 100)
+    i.set_face_colors("#D5D8DC", "#D6DBDF","#AEB6BF","#85929E",
+    "#D5D8DC", "#D6DBDF","#AEB6BF","blue",
+    "#D5D8DC", "#D6DBDF","#AEB6BF","#85929E",
+    "#D5D8DC", "#D6DBDF","#AEB6BF","#85929E",
+    "#D5D8DC", "#D6DBDF","#AEB6BF","#85929E")
+    e.add(i)
+    i.rotate_in_place_z(math.pi/2.5)
+    i.rotate_in_place_x(-math.pi/2)

@@ -54,13 +54,15 @@ class Object3D:
                 points.extend([x0, y0, x1, y1])
             fill = self.color if face.color == "white" else face.color
             outline = face.color
-            canvas.create_polygon(points, outline=fill, fill=fill)
+            canvas.create_polygon(points, outline="#566573", fill="#EBEDEF")
 
 
     def sort_faces(self):
+        print('count')
         def key(face):
-            return max([vertex[0] for vertex in face.vertices])
-        #key = lambda face: sum([vertex[0] for vertex in face.vertices]) / len(face.vertices)
+           return max([vertex[1] for vertex in face.vertices])
+
+        key = lambda face: sum([vertex[0] for vertex in face.vertices]) / len(face.vertices)
         self.faces.sort(key=key)
 
     def set_face_colors(self, *args):
